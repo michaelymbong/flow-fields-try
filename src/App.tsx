@@ -10,11 +10,17 @@ function App() {
     const canvas = canvasRef?.current;
     const context = canvas?.getContext("2d");
     const field = generateField({
-      count: 300,
+      count: 1000,
       height: 500,
       width: 500,
       margin: 0,
+      amplitude: 10,
     });
+
+    if (!!canvas) {
+      canvas.width = 500;
+      canvas.height = 500;
+    }
 
     field.forEach((point: Point) => {
       const [start, ...pts] = point.line || [];
