@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useRef } from "react";
+import { generateField } from "@romellogoodman/flow-field";
+import "./App.css";
+import { Point } from "./types";
 
 function App() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef?.current;
+    const context = canvas?.getContext("2d");
+    const field = generateField({
+      count: 300,
+      height: 500,
+      width: 500,
+      margin: 0,
+    });
+
+    field.forEach((point: Point) => {
+      const [start, ...pts] = point.line || [];
+
+      if (!start) return;
+
+      if (context) {
+        context.beginPath();
+        context.moveTo(start[0], start[1]);
+
+        pts.forEach((pt) => {
+          context.lineTo(pt[0], pt[1]);
+        });
+
+        context.strokeStyle = "black";
+        context.stroke();
+      }
+    });
+  }, [canvasRef]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Flow fields</p>
       </header>
+      <div className="App-body">
+        <canvas ref={canvasRef} className="canvas" />
+      </div>
     </div>
   );
 }
