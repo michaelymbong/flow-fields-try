@@ -10,16 +10,17 @@ function App() {
     const canvas = canvasRef?.current;
     const context = canvas?.getContext("2d");
     const field = generateField({
-      count: 1000,
+      count: 3000,
       height: 500,
       width: 500,
       margin: 0,
       amplitude: 10,
     });
 
-    if (!!canvas) {
+    if (canvas) {
       canvas.width = 500;
       canvas.height = 500;
+      canvas.style.background = `-webkit-linear-gradient(${getRandomAngle()}deg, ${getRandomColor()}, ${getRandomColor()})`;
     }
 
     field.forEach((point: Point) => {
@@ -35,7 +36,8 @@ function App() {
           context.lineTo(pt[0], pt[1]);
         });
 
-        context.strokeStyle = "black";
+        context.strokeStyle = getRandomColor();
+
         context.stroke();
       }
     });
@@ -51,6 +53,19 @@ function App() {
       </div>
     </div>
   );
+}
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function getRandomAngle() {
+  return Math.random() * 360;
 }
 
 export default App;
