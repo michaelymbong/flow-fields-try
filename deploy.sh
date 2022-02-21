@@ -27,6 +27,6 @@ npm run  build
 
 # Copy build files to 
 rm -rf /var/www/html/flowfields.michaelymbong.art
-cp -r /build /var/www/html/flowfields.michaelymbong.art
+cp -r build /var/www/html/flowfields.michaelymbong.art
 
 echo "DONE!"
