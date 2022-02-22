@@ -25,7 +25,9 @@
 }
 
 .App-body {
+  background-color: #131516;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 80vh;
@@ -38,6 +40,7 @@
 .canvas {
   height: 500px;
   width: 500px;
+  margin: 20px;
 }
 
 @keyframes App-logo-spin {
