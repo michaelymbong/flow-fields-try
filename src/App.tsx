@@ -47,7 +47,7 @@ function App() {
   useEffect(() => {
     const canvas = windCanvasRef?.current;
     const context = canvas?.getContext("2d");
-    const field = generateField({
+    const field: Array<Point> = generateField({
       amplitude: 100,
       count: 1500,
       damping: 0.1,
@@ -99,7 +99,7 @@ function App() {
   );
 }
 
-function getRandomColor() {
+function getRandomColor(): string {
   const letters = "0123456789ABCDEF";
   let color = "#";
   for (var i = 0; i < 6; i++) {
@@ -108,7 +108,7 @@ function getRandomColor() {
   return color;
 }
 
-function getRandomAngle() {
+function getRandomAngle(): number {
   return Math.random() * 360;
 }
 
