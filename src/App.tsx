@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { generateField } from "@romellogoodman/flow-field";
 import "./App.css";
 import { Point } from "./types";
@@ -47,7 +47,7 @@ function App() {
   useEffect(() => {
     const canvas = windCanvasRef?.current;
     const context = canvas?.getContext("2d");
-    const field: Array<Point> = generateField({
+    const field: Point[] = generateField({
       amplitude: 100,
       count: 1500,
       damping: 0.1,
