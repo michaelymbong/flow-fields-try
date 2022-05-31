@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { generateField } from "@romellogoodman/flow-field";
 import "./App.css";
 import { Point } from "./types";
+import { getRandomAngle, getRandomColor } from "./utils";
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -83,7 +84,7 @@ function App() {
   }, [windCanvasRef]);
 
   return (
-    <div className="App">
+    <div className="App" data-testid="App">
       <header className="App-header">
         <p>Flow fields</p>
       </header>
@@ -97,19 +98,6 @@ function App() {
       </div>
     </div>
   );
-}
-
-function getRandomColor(): string {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
-function getRandomAngle(): number {
-  return Math.random() * 360;
 }
 
 export default App;
